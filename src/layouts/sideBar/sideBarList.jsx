@@ -15,6 +15,7 @@ import { ItemTypes } from '../../utils/itemsTypes';
 import ListItemComponent from '../../components/sideBarComponents/listItem';
 import update from 'immutability-helper'
 import CloseIcon from '@mui/icons-material/Close';
+// import { isMobile , headers} from "../../utils/isMobile";
 
 function SideBarList() {
     const [editMode, setEditMode] = React.useState(false);
@@ -197,9 +198,11 @@ function SideBarList() {
 }
 
 export default (() => {
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    const Backend = isMobile ? TouchBackend : HTML5Backend;
-    return <DndProvider backend={Backend}>
+    // const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    // const userAgent = headers().get("user-agent") || "";
+    // const mobileCheck = isMobile(userAgent);
+    // const Backend = mobileCheck ? TouchBackend : HTML5Backend;
+    return <DndProvider backend={HTML5Backend}>
         <SideBarList />
     </DndProvider>
 })
