@@ -1,10 +1,8 @@
-import { Inter } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./globals.css"
 import Layouts from "../layouts/index";
 
 
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "IZAM",
@@ -14,7 +12,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className} suppressHydrationWarning={true}>
+      <body suppressHydrationWarning={true}>
         <Layouts>
           <main>
             {children}
