@@ -201,7 +201,7 @@ function SideBarList({ handleClose }) {
 export default (({ handleClose }) => {
     // const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     // const userAgent = headers().get("user-agent") || "";
-    if (window) {
+    if (typeof window !== "undefined") {
         let Backend = window.innerWidth <= 768 ? TouchBackend : HTML5Backend
         return <DndProvider backend={Backend}>
             <SideBarList handleClose={handleClose} />
