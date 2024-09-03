@@ -203,7 +203,6 @@ export default (({ handleClose }) => {
     // const userAgent = headers().get("user-agent") || "";
 
     let Backend  = window.innerWidth <= 768 ? TouchBackend : HTML5Backend
- 
     return <DndProvider backend={Backend}>
         <SideBarList handleClose={handleClose} />
     </DndProvider>
