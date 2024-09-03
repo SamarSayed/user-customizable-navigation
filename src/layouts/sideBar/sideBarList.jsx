@@ -15,9 +15,8 @@ import { ItemTypes } from '../../utils/itemsTypes';
 import ListItemComponent from '../../components/sideBarComponents/listItem';
 import update from 'immutability-helper'
 import CloseIcon from '@mui/icons-material/Close';
-// import { isMobile , headers} from "../../utils/isMobile";
 
-function SideBarList({handleClose}) {
+function SideBarList({ handleClose }) {
     const [editMode, setEditMode] = React.useState(false);
     const [navItems, setNavItems] = React.useState([]);
 
@@ -178,8 +177,8 @@ function SideBarList({handleClose}) {
                                     moveCard={moveCard}
                                     findCard={findCard}
                                     onReleaseItem={onReleaseItem}
-                                    onHoldItem={onHoldItem} 
-                                    handleClose={handleClose}/> :
+                                    onHoldItem={onHoldItem}
+                                    handleClose={handleClose} /> :
                                 <ListItemComponent
                                     onReleaseItem={onReleaseItem}
                                     onHoldItem={onHoldItem}
@@ -189,8 +188,8 @@ function SideBarList({handleClose}) {
                                     updateNavItem={updateNavItem}
                                     itemType={ItemTypes.CARD}
                                     moveCard={moveCard}
-                                    findCard={findCard} 
-                                    handleClose={handleClose}/>
+                                    findCard={findCard}
+                                    handleClose={handleClose} />
                         ) : '';
                     })}
                 </div>
@@ -199,12 +198,13 @@ function SideBarList({handleClose}) {
     );
 }
 
-export default (({handleClose}) => {
+export default (({ handleClose }) => {
     // const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     // const userAgent = headers().get("user-agent") || "";
-    // const mobileCheck = isMobile(userAgent);
-    // const Backend = mobileCheck ? TouchBackend : HTML5Backend;
-    return <DndProvider backend={HTML5Backend}>
-        <SideBarList handleClose={handleClose}/>
+
+    let Backend  = window.innerWidth <= 768 ? TouchBackend : HTML5Backend
+ 
+    return <DndProvider backend={Backend}>
+        <SideBarList handleClose={handleClose} />
     </DndProvider>
 })
