@@ -24,7 +24,7 @@ export default function SideBar() {
     return (
         <div className='sideBar'>
             <div className='d-md-block d-none'>
-                <SideBarList />
+                <SideBarList/>
             </div>
             <div className='d-md-none' style={{textAlign: "center"}}>
                 <IconButton
@@ -51,7 +51,7 @@ export default function SideBar() {
                     >
                         <CloseIcon style={{marginLeft: "auto"}} />
                     </IconButton>
-                    <SideBarList />
+                    <SideBarList handleClose={handleClose}/>
                 </Dialog>
             </div>
         </div>

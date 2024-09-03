@@ -6,7 +6,7 @@ import { Collapse, List } from '@mui/material';
 import { useDrop } from 'react-dnd';
 import { ItemTypes } from '../../utils/itemsTypes';
 
-export default function CollapseListItemComponent({ item, editMode, updateNavItem, findCard, moveCard, onReleaseItem, onHoldItem}) {
+export default function CollapseListItemComponent({ item, editMode, updateNavItem, findCard, moveCard, onReleaseItem, onHoldItem, handleClose}) {
     const [open, setOpen] = React.useState(false);
     const [{ canDrop, isOver }, drop] = useDrop(() => ({
         accept: item.labelId,
@@ -52,7 +52,8 @@ export default function CollapseListItemComponent({ item, editMode, updateNavIte
                                     moveCard={moveCard}
                                     findCard={findCard}
                                     onReleaseItem={onReleaseItem}
-                                    onHoldItem={onHoldItem} />
+                                    onHoldItem={onHoldItem} 
+                                    handleClose={handleClose}/>
                             })
                         }
                     </div>

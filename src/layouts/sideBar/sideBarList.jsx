@@ -17,7 +17,7 @@ import update from 'immutability-helper'
 import CloseIcon from '@mui/icons-material/Close';
 // import { isMobile , headers} from "../../utils/isMobile";
 
-function SideBarList() {
+function SideBarList({handleClose}) {
     const [editMode, setEditMode] = React.useState(false);
     const [navItems, setNavItems] = React.useState([]);
 
@@ -178,7 +178,8 @@ function SideBarList() {
                                     moveCard={moveCard}
                                     findCard={findCard}
                                     onReleaseItem={onReleaseItem}
-                                    onHoldItem={onHoldItem} /> :
+                                    onHoldItem={onHoldItem} 
+                                    handleClose={handleClose}/> :
                                 <ListItemComponent
                                     onReleaseItem={onReleaseItem}
                                     onHoldItem={onHoldItem}
@@ -188,7 +189,8 @@ function SideBarList() {
                                     updateNavItem={updateNavItem}
                                     itemType={ItemTypes.CARD}
                                     moveCard={moveCard}
-                                    findCard={findCard} />
+                                    findCard={findCard} 
+                                    handleClose={handleClose}/>
                         ) : '';
                     })}
                 </div>
@@ -197,12 +199,12 @@ function SideBarList() {
     );
 }
 
-export default (() => {
+export default (({handleClose}) => {
     // const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     // const userAgent = headers().get("user-agent") || "";
     // const mobileCheck = isMobile(userAgent);
     // const Backend = mobileCheck ? TouchBackend : HTML5Backend;
     return <DndProvider backend={HTML5Backend}>
-        <SideBarList />
+        <SideBarList handleClose={handleClose}/>
     </DndProvider>
 })

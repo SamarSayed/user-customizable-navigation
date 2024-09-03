@@ -17,7 +17,7 @@ import Link from 'next/link'
 
 
 
-export default function ListItemComponent({ item, isCollapse, open, editMode, updateNavItem, itemType, findCard, moveCard, onReleaseItem, onHoldItem }) {
+export default function ListItemComponent({ item, isCollapse, open, editMode, updateNavItem, itemType, findCard, moveCard, onReleaseItem, onHoldItem, handleClose }) {
     const [editTitle, setEditTitle] = React.useState(false);
     const originalIndex = findCard(item.id, item.title).index
     const [{ isDragging }, drag] = useDrag(
@@ -60,39 +60,42 @@ export default function ListItemComponent({ item, isCollapse, open, editMode, up
     };
 
     return (
-        <Link href={item.target && !editMode ? `${item.target}` : '#'} style={{ textDecoration: 'none', color: 'unset' }}>
-            <ListItem
-                className='sideBarListCard'
-                secondaryAction={
-                    editMode ? <>
-                        {!editTitle && <IconButton edge="end" aria-label="comments" onClick={() => handleToggleEditTitle(true)}>
-                            <EditOutlinedIcon />
-                        </IconButton>}
-                        <IconButton edge="end" aria-label="comments">
-                            {item.visible == false ? <VisibilityOutlinedIcon onClick={() => handleToggleVisible(true)} /> : <VisibilityOffOutlinedIcon onClick={() => handleToggleVisible(false)} />}
-                        </IconButton>
-                    </> :
-                        isCollapse && <IconButton edge="end" aria-label="expand" >
-                            {!editMode && (open ?
-                                <ExpandLess /> :
-                                <ExpandMore />
-                            )}
-                        </IconButton>
+        <span onClick={handleClose ? handleClose : () => { }}>
 
-                }
-                disablePadding
-            >
-                <ListItemButton role={undefined} dense onMouseDown={onHoldItem} onMouseLeave={onReleaseItem} onMouseOut={onReleaseItem} onMouseUp={onReleaseItem}>
-                    <div style={{ 'display': 'flex' }} ref={(node) => editMode ? drag(drop(node)) : node}>
-                        {editMode && <ListItemIcon>
-                            <DragIndicatorIcon />
-                        </ListItemIcon>}
-                        {
-                            editTitle && editMode ? <EditTitleInputComponent item={item} handleToggleEditTitle={handleToggleEditTitle} updateNavItem={updateNavItem} /> : <ListItemText id={item.labelId} primary={item.title} color={item.visible ? 'black' : 'gray'} />
-                        }
-                    </div>
-                </ListItemButton>
-            </ListItem>
-        </Link>
+            <Link href={item.target && !editMode ? `${item.target}` : '#'} style={{ textDecoration: 'none', color: 'unset' }}>
+                <ListItem
+                    className='sideBarListCard'
+                    secondaryAction={
+                        editMode ? <>
+                            {!editTitle && <IconButton edge="end" aria-label="comments" onClick={() => handleToggleEditTitle(true)}>
+                                <EditOutlinedIcon />
+                            </IconButton>}
+                            <IconButton edge="end" aria-label="comments">
+                                {item.visible == false ? <VisibilityOutlinedIcon onClick={() => handleToggleVisible(true)} /> : <VisibilityOffOutlinedIcon onClick={() => handleToggleVisible(false)} />}
+                            </IconButton>
+                        </> :
+                            isCollapse && <IconButton edge="end" aria-label="expand" >
+                                {!editMode && (open ?
+                                    <ExpandLess /> :
+                                    <ExpandMore />
+                                )}
+                            </IconButton>
+
+                    }
+                    disablePadding
+                >
+                    <ListItemButton role={undefined} dense onMouseDown={onHoldItem} onMouseLeave={onReleaseItem} onMouseOut={onReleaseItem} onMouseUp={onReleaseItem}>
+                        <div style={{ 'display': 'flex' }} ref={(node) => editMode ? drag(drop(node)) : node}>
+                            {editMode && <ListItemIcon>
+                                <DragIndicatorIcon />
+                            </ListItemIcon>}
+                            {
+                                editTitle && editMode ? <EditTitleInputComponent item={item} handleToggleEditTitle={handleToggleEditTitle} updateNavItem={updateNavItem} /> : <ListItemText id={item.labelId} primary={item.title} color={item.visible ? 'black' : 'gray'} />
+                            }
+                        </div>
+                    </ListItemButton>
+                </ListItem>
+            </Link>
+        </span>
     );
 }

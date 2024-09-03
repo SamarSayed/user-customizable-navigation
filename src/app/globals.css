@@ -40,3 +40,15 @@ main {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
+.css-cveggr-MuiListItemIcon-root{
+  min-width: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.css-lxfshk-MuiInputBase-root-MuiOutlinedInput-root{
+  height: 40px;
+  width: 85%;
+}
